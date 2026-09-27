@@ -1,215 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="sk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="MediDocs is a calm, private home for the documents that tell your health story."
-    />
-    <meta name="theme-color" content="#0c1110" />
-    <meta property="og:title" content="MediDocs - your health history, clearly held" />
-    <meta
-      property="og:description"
-      content="One private, beautifully organized place for every medical report, result, and scan."
-    />
-    <title>MediDocs - your health history, clearly held</title>
+    <meta name="description" content="Vaše zdravotné záznamy na jednom mieste. Vyšetrenia, správy, výsledky a snímky v jednoduchom prehľade." />
+    <meta name="theme-color" content="#f5f5f3" />
+    <meta property="og:title" content="MediDocs — vaše zdravotné záznamy" />
+    <meta property="og:description" content="Jedno miesto pre vaše zdravotné záznamy. Pre váš prehľad. Pre budúce prepojenie s AI." />
+    <title>MediDocs — vaše zdravotné záznamy</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="/styles.css" />
+    <script src="/script.js" defer></script>
   </head>
   <body>
-    <div class="aurora aurora-left"></div>
-    <div class="aurora aurora-right"></div>
-
-    <main>
-      <nav aria-label="Primary navigation">
-        <a class="brand" href="/" aria-label="MediDocs home">
-          <img src="/logo.svg" alt="" width="42" height="42" />
-          <span>MediDocs</span>
-        </a>
-        <a class="nav-cta" href="https://app.medidocs.sk">
-          Open your space
-          <span aria-hidden="true">↗</span>
-        </a>
-      </nav>
-
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="signal">
-            <i aria-hidden="true"></i>
-            Private by design
-          </div>
-          <h1>Your health history,<br /><em>beautifully clear.</em></h1>
-          <p>
-            One reliable space for every report, result, and scan that matters.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://app.medidocs.sk">
-              Enter MediDocs
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a class="text-link" href="#archive">See how it feels</a>
-          </div>
-        </div>
-
-        <div class="trust-note" aria-label="MediDocs principles">
-          <span>Your documents</span>
-          <i></i>
-          <span>Your timeline</span>
-          <i></i>
-          <span>Your privacy</span>
+    <a class="skip-link" href="#main">Preskočiť na obsah</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="MediDocs — úvod"><img src="/logo.svg" alt="" width="32" height="32" /><span>MediDocs</span></a>
+      <div class="header-actions"><button class="theme-toggle" type="button" aria-label="Zapnúť tmavý režim" aria-pressed="false">Tmavý režim</button><a class="text-link" href="https://app.medidocs.sk">Otvoriť aplikáciu <span aria-hidden="true">↗</span></a></div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Váš osobný zdravotný archív</p>
+        <h1 id="hero-title">Vaše zdravie.<br />Vaše záznamy.<br /><span>Jedno miesto.</span></h1>
+        <div class="hero-bottom">
+          <p>Jednotný zdroj vašich zdravotných záznamov.<br />Pre jednoduchý prehľad aj budúce prepojenie s AI.</p>
+          <a class="button" href="https://app.medidocs.sk">Otvoriť MediDocs <span aria-hidden="true">↗</span></a>
         </div>
       </section>
-
-      <section class="product-stage" id="archive" aria-label="MediDocs product preview">
-        <div class="stage-glow"></div>
-        <div class="float-card upload-card">
-          <span class="float-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" />
-            </svg>
-          </span>
-          <span>
-            <small>New document</small>
-            <strong>Blood results.pdf</strong>
-          </span>
-          <b aria-hidden="true">✓</b>
-        </div>
-
-        <div class="float-card privacy-card">
-          <span class="privacy-pulse"></span>
-          <span>
-            <small>Private archive</small>
-            <strong>Only visible to you</strong>
-          </span>
-        </div>
-
-        <div class="app-window">
-          <div class="window-topbar">
-            <div class="window-brand">
-              <img src="/logo.svg" alt="" width="28" height="28" />
-              <span>MediDocs</span>
-            </div>
-            <div class="window-dots"><i></i><i></i><i></i></div>
-            <div class="avatar">RO</div>
-          </div>
-
-          <div class="window-body">
-            <aside>
-              <p>My archive</p>
-              <a class="active" href="#archive">
-                <span class="side-icon"></span>
-                Documents
-                <b>12</b>
-              </a>
-              <a href="#archive">
-                <span class="side-icon calendar"></span>
-                Timeline
-              </a>
-              <div class="storage">
-                <span><i></i></span>
-                <small>Everything in one place</small>
-              </div>
-            </aside>
-
-            <div class="archive">
-              <header>
-                <div>
-                  <small>MY HEALTH ARCHIVE</small>
-                  <h2>Documents</h2>
-                </div>
-                <button type="button">
-                  <span>+</span>
-                  Upload
-                </button>
-              </header>
-
-              <div class="archive-tools">
-                <label>
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="11" cy="11" r="6"></circle>
-                    <path d="m16 16 4 4"></path>
-                  </svg>
-                  <span>Search your archive</span>
-                </label>
-                <span>All documents</span>
-              </div>
-
-              <div class="year">
-                <span>2026</span>
-                <i></i>
-              </div>
-
-              <div class="document-list">
-                <article>
-                  <span class="file-icon coral">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M7 3h7l4 4v14H7z"></path>
-                      <path d="M14 3v5h5"></path>
-                    </svg>
-                  </span>
-                  <span class="file-copy">
-                    <strong>Blood results - July</strong>
-                    <small>Laboratory result</small>
-                  </span>
-                  <span class="file-date">16 Jul 2026</span>
-                  <span class="file-place">Medirex</span>
-                  <span class="open">Open ↗</span>
-                </article>
-                <article>
-                  <span class="file-icon violet">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M7 3h7l4 4v14H7z"></path>
-                      <path d="M14 3v5h5"></path>
-                    </svg>
-                  </span>
-                  <span class="file-copy">
-                    <strong>Cardiology report</strong>
-                    <small>Medical report</small>
-                  </span>
-                  <span class="file-date">02 May 2026</span>
-                  <span class="file-place">Heart Center</span>
-                  <span class="open">Open ↗</span>
-                </article>
-                <article>
-                  <span class="file-icon mint">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M7 3h7l4 4v14H7z"></path>
-                      <path d="M14 3v5h5"></path>
-                    </svg>
-                  </span>
-                  <span class="file-copy">
-                    <strong>Vaccination record</strong>
-                    <small>Vaccination</small>
-                  </span>
-                  <span class="file-date">18 Jan 2026</span>
-                  <span class="file-place">My clinic</span>
-                  <span class="open">Open ↗</span>
-                </article>
-              </div>
-            </div>
-          </div>
+      <section class="overview" aria-labelledby="overview-title">
+        <div class="section-label"><span>01 / Záznamy</span><h2 id="overview-title">Súvislosti namiesto<br />roztrúsených dokumentov.</h2></div>
+        <div class="rows">
+          <div class="row"><h3>Vyšetrenia a dokumenty</h3><p>Správy, laboratórne výsledky a snímky priradené k vyšetreniam.</p></div>
+          <div class="row"><h3>Zdravotný prehľad</h3><p>Diagnózy, lieky, lekári a symptómy v súvislostiach.</p></div>
+          <div class="row"><h3>Základ pre AI <span class="tag">Plánované</span></h3><p>Usporiadané záznamy ako podklad pre budúce integrácie.</p></div>
         </div>
       </section>
-
-      <section class="closing">
-        <img src="/logo.svg" alt="" width="58" height="58" />
-        <p>Made for the most important story you carry.</p>
-        <a href="https://app.medidocs.sk">Start your archive <span>↗</span></a>
-      </section>
-
-      <footer>
-        <span>Made with care in Slovakia</span>
-        <span>© <span id="year"></span> MediDocs</span>
-      </footer>
+      <section class="closing" aria-label="Vstup do aplikácie"><p>Začnite svojimi záznamami.</p><a class="text-link" href="https://app.medidocs.sk">Otvoriť aplikáciu <span aria-hidden="true">↗</span></a></section>
     </main>
+    <footer><span>© <span id="year">2026</span> MediDocs</span><a href="https://app.medidocs.sk/privacy">Súkromie</a></footer>
 
-    <script src="/script.js"></script>
   </body>
 </html>
