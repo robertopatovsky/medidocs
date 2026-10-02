@@ -1,3 +1,7 @@
 .git
 .DS_Store
 README.md
+
+.github
+ops
+local_deployment.env

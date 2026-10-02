@@ -1,0 +1,72 @@
+name: Production images
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+
+  publish:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and publish production image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/robertopatovsky/medidocs-landing:sha-${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Verify nginx and image health
+        run: |
+          IMAGE=ghcr.io/robertopatovsky/medidocs-landing:sha-$GITHUB_SHA
+          docker pull "$IMAGE"
+          docker run --rm "$IMAGE" nginx -t
+          docker run --rm -d --name landing-smoke -p 127.0.0.1:8080:80 "$IMAGE"
+          curl --fail --retry 10 --retry-connrefused --retry-delay 2 http://127.0.0.1:8080/health
+          docker stop landing-smoke
+
+  deploy:
+    if: vars.PRODUCTION_DEPLOY_ENABLED == 'true'
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy published release and wait for Coolify
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COOLIFY_BASE_URL: ${{ vars.COOLIFY_BASE_URL }}
+          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
+        run: |
+          if [ "$(gh api repos/$GITHUB_REPOSITORY/commits/main --jq .sha)" != "$GITHUB_SHA" ]; then
+            echo "Skipping an older commit superseded on main."
+            exit 0
+          fi
+          python3 ops/deploy_coolify_image.py aiwnya3ltl5kjavpwydsie3y ghcr.io/robertopatovsky/medidocs-landing sha-$GITHUB_SHA
