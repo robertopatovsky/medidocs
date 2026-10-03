@@ -17,7 +17,8 @@ def request(path, method="GET", payload=None):
     req = urllib.request.Request(
         base + "/api/v1" + path, data=data, method=method,
         headers={"Authorization": "Bearer " + os.environ["COOLIFY_API_TOKEN"],
-                 "Content-Type": "application/json", "Accept": "application/json"},
+                 "Content-Type": "application/json", "Accept": "application/json",
+                 "User-Agent": "MediDocs-Deploy/1.0"},
     )
     # Do not echo server error bodies: they may contain deployment configuration.
     try:
