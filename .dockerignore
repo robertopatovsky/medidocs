@@ -5,3 +5,8 @@ README.md
 .github
 ops
 local_deployment.env
+
+node_modules
+tests
+test-results
+playwright-report
