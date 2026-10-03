@@ -54,6 +54,7 @@ def deploy(uuid, image, tag):
     print(f"Previous release: {previous}", flush=True)
     deadline = time.monotonic() + 600
     last = None
+    health_deadline = None
     while time.monotonic() < deadline:
         state = request("/deployments/" + deployment)["status"]
         if state != last:
@@ -63,9 +64,13 @@ def deploy(uuid, image, tag):
             app = request(path)
             expected_status = "running:healthy" if app["health_check_enabled"] else "running:unknown"
             if app["status"] != expected_status:
-                if app["status"] in {"running:starting", "running:unknown"} and app["health_check_enabled"]:
-                    time.sleep(10)
-                    continue
+                if app["health_check_enabled"] and app["status"].startswith("running:"):
+                    if health_deadline is None:
+                        health_deadline = min(deadline, time.monotonic() + 120)
+                        print("Waiting for Coolify to report the application's health", flush=True)
+                    if time.monotonic() < health_deadline:
+                        time.sleep(10)
+                        continue
                 raise RuntimeError(f"Deployment finished but application status is {app['status']}")
             if app["docker_registry_image_tag"] != tag:
                 raise RuntimeError("Another release replaced the selected image")
