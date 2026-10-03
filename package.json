@@ -1,0 +1,17 @@
+{
+  "name": "@medidocs/landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings=0",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "eslint": "^9.16.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.9.6"
+  }
+}

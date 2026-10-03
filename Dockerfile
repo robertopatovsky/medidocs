@@ -1,4 +1,4 @@
-FROM nginx:1.27-alpine
+FROM nginx:1.30.5-alpine
 COPY index.html styles.css script.js favicon.svg logo.svg /usr/share/nginx/html/
 COPY fonts/ /usr/share/nginx/html/fonts/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
