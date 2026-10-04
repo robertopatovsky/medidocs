@@ -69,7 +69,8 @@ def deploy(uuid, image, tag):
     ) != (image, tag):
         raise RuntimeError("Coolify did not save the selected image")
     queued = request(
-        "/deploy?" + urllib.parse.urlencode({"uuid": uuid, "force": "false"})
+        "/deploy?" + urllib.parse.urlencode({"uuid": uuid, "force": "false"}),
+        "POST",
     )
     deployment = next(
         item["deployment_uuid"]
