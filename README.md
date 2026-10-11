@@ -4,6 +4,9 @@ Public static landing page for [medidocs.sk](https://medidocs.sk), served by ngi
 It contains no medical data or API client. App links point to the authenticated
 Next.js application; the selected light/dark theme is handed over in the URL.
 Inter variable font is hosted locally under the included SIL Open Font License.
+Display headings use weight 400, Inter's display optical size (`opsz: 32`),
+and shared tracking tokens to match the application typography. The font binary
+is unmodified; the page includes no Alliance font files.
 
 ## Local preview
 
