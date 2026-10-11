@@ -3,7 +3,7 @@
 Public static landing page for [medidocs.sk](https://medidocs.sk), served by nginx.
 It contains no medical data or API client. App links point to the authenticated
 Next.js application; the selected light/dark theme is handed over in the URL.
-Manrope fonts are hosted locally.
+Inter variable font is hosted locally under the included SIL Open Font License.
 
 ## Local preview
 
